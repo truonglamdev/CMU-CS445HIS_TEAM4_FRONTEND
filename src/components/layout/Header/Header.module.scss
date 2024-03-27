@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  height: 70px;
+  background-color: #28346d;
+  align-items: center;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 80px;
+}
+
+.menu {
+  width: 300px;
+}
+
+.btn-register {
+  margin-right: 20px !important;
+}
+
+.icon {
+  padding: 0 6px;
+  svg {
+    width: 26px;
+    height: 26px;
+    color: #1976d2;
+  }
+}
