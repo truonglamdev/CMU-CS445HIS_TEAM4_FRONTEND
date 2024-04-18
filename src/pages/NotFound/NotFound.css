@@ -1,0 +1,39 @@
+.not-found-container {
+    text-align: center;
+    margin-top: 20vh;
+    color: #727071;
+    font-family: 'Raleway55' serif;
+
+}
+
+.not-found-container h1 {
+    font-style: italic;
+    font-size: 10em;
+}
+
+
+.not-found-container div {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.not-found-container p {
+    display: inline-block;
+    padding: 4px;
+    border: medium solid #727071;
+    box-shadow: -5px 5px;
+    cursor: pointer;
+}
+
+.not-found-container a {
+    font-family: 'Raleway55' serif;
+    font-weight: bold;
+    text-decoration: none;
+    margin: 30px 30px;
+    color: #727071;
+}
+
+.not-found-container a:hover {
+    text-decoration: underline;
+}
