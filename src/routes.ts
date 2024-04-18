@@ -1,8 +1,9 @@
- import Login from "./pages/Login";
- import Home from "./pages/Home/Home";
-import NotFound from "./pages/NotFound";
-import Register from "./pages/Register";
- const routes = [
+import Login from '~/pages/Auth/Login';
+import Home from '~/pages/Home';
+import NotFound from '~/pages/NotFound';
+import Register from '~/pages/Auth/Register';
+import EmailVerifier from '~/pages/EmailVerifier';
+const routes = [
     {
         path: '/login',
         page: Login,
@@ -17,14 +18,18 @@ import Register from "./pages/Register";
         isPrivate: true,
         roles: ['admin'],
     },
-     {
+    {
+        path: '/user/verify/:id/:token',
+        page: EmailVerifier,
+    },
+    {
         path: '/',
         page: Home,
         isShowHeader: true,
         isPrivate: true,
         roles: ['admin'],
     },
-    
+
     {
         path: '*',
         page: NotFound,
