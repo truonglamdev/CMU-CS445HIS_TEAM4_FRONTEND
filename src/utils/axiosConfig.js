@@ -1,8 +1,63 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies(null, { path: '/' });
 
+const BASE_URL = 'http://localhost:8085/v1';
 export const instance = axios.create({
-    baseURL: 'http://localhost:8085/v1',
+    baseURL: BASE_URL,
 });
+
+instance.interceptors.request.use(
+    (config) => {
+        const token = cookies.get('accessToken');
+        if (token) {
+            config.headers['Authorization'] = `Bearer ${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    },
+);
+
+instance.interceptors.response.use(
+    (response) => {
+        return response;
+    },
+    async (error) => {
+        const originalConfig = error.config;
+        console.log(originalConfig);
+        console.log('Access Token expired');
+        if (error.response && error.response.status === 419) {
+            try {
+                const refreshToken = cookies.get('refreshToken');
+                const result = await instance.post(`${BASE_URL}/user/refresh-token`, {
+                    refreshToken: refreshToken,
+                });
+                const { accessToken } = result.data;
+                cookies.set('accessToken', accessToken);
+                originalConfig.headers['Authorization'] = `Bearer ${accessToken}`;
+
+                return instance(originalConfig);
+            } catch (err) {
+                if (err.response && err.response.status === 403) {
+                    toast.error('Login session has expired, please log in again.', {
+                        position: 'top-center',
+                    });
+                    setTimeout(() => {
+                        cookies.remove('accessToken');
+                        cookies.remove('refreshToken');
+                        localStorage.removeItem('user');
+                        window.location.href = '/login';
+                    }, 2000);
+                }
+                return Promise.reject(err);
+            }
+        }
+        return Promise.reject(error);
+    },
+);
 
 export const get = async (path, params) => {
     try {

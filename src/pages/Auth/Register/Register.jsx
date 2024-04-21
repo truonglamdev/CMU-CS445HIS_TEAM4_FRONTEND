@@ -1,18 +1,14 @@
 /* eslint-disable no-useless-escape */
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormHelperText } from '@mui/material';
+import { FormHelperText, Grid } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
 import Container from '@mui/material/Container';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Grid from '@mui/material/Grid';
-import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import {  useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as yup from 'yup';
 import Loading from '~/components/Loading';
@@ -75,13 +71,13 @@ function Register() {
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
-                            padding: '24px 20px',
+                            padding: '30px 40px',
                             borderRadius: '8px',
                             border: '1px solid #ccc',
                         }}
                     >
-                        <Typography component="h1" variant="h5">
-                            Register
+                        <Typography component="h1" variant="h4" sx={{ color: '#407087' }}>
+                            REGISTER
                         </Typography>
                         <Box
                             component="form"
@@ -98,6 +94,7 @@ function Register() {
                                 name="name"
                                 autoComplete="name"
                                 autoFocus
+                                sx={{ fontSize: '12px' }}
                                 {...register('name')}
                             />
                             {errors.name && (
@@ -113,7 +110,7 @@ function Register() {
                                 label="Email Address"
                                 name="email"
                                 autoComplete="email"
-                                autoFocus
+                                // autoFocus
                                 {...register('email')}
                             />
                             {errors.email && (
@@ -153,21 +150,18 @@ function Register() {
                                     {errors.confirmPassword.message}
                                 </FormHelperText>
                             )}
-                            <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
-                                label="Remember me"
-                            />
-                            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2, p: 1 }}>
+
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2, p: 1.5, backgroundColor: '#f69d4d', fontSize: '1.4rem' }}
+                            >
                                 Register
                             </Button>
                             <Grid container>
                                 <Grid item xs>
-                                    <Link href="#" variant="body2">
-                                        Forgot password?
-                                    </Link>
-                                </Grid>
-                                <Grid item>
-                                    <Link href="/login" variant="body2">
+                                    <Link to="/login" variant="body2" sx={{ fontSize: '12px', color: '#407087' }}>
                                         {"Don't have an account? Login"}
                                     </Link>
                                 </Grid>

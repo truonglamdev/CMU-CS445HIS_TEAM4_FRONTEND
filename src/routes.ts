@@ -3,20 +3,23 @@ import Home from '~/pages/Home';
 import NotFound from '~/pages/NotFound';
 import Register from '~/pages/Auth/Register';
 import EmailVerifier from '~/pages/EmailVerifier';
+import Dashboard from '~/pages/Dashboard';
 const routes = [
     {
         path: '/login',
         page: Login,
         isShowHeader: true,
-        isPrivate: true,
+    },
+    {
+        path: '/dashboard',
+        page: Dashboard,
+        isShowHeader: true,
         roles: ['admin'],
     },
     {
         path: '/register',
         page: Register,
         isShowHeader: true,
-        isPrivate: true,
-        roles: ['admin'],
     },
     {
         path: '/user/verify/:id/:token',
@@ -26,15 +29,11 @@ const routes = [
         path: '/',
         page: Home,
         isShowHeader: true,
-        isPrivate: true,
-        roles: ['admin'],
     },
-
     {
         path: '*',
         page: NotFound,
         isShowHeader: true,
-        isPrivate: false,
     },
 ];
 

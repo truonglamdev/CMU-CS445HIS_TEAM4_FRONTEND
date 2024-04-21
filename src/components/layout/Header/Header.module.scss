@@ -1,29 +1,60 @@
 .wrapper {
-  display: flex;
-  height: 70px;
-  background-color: #28346d;
-  align-items: center;
-  padding: 0 20px;
-  justify-content: space-between;
+    display: flex;
+    height: 100px;
+    background-color: #407087;
+    align-items: center;
+    padding: 0 90px;
+    justify-content: space-between;
 }
 
 .logo {
-  width: 80px;
+    width: 90px;
+    height: 90px;
+
+    img {
+        width: 100%;
+        background-color: transparent;
+    }
 }
 
 .menu {
-  width: 300px;
+    width: 400px;
+    display: flex;
 }
 
-.btn-register {
-  margin-right: 20px !important;
+.btn-register,
+.btn-login {
+    background-color: #f69d4d;
+    margin-right: 20px !important;
+    padding: 10px !important;
+    min-width: 140px !important;
+    font-size: 1.3rem !important;
+    font-weight: 400 !important;
+    border-radius: 50px !important;
+
+    &:hover {
+        background-color: #f69d4d !important;
+        opacity: 0.8 !important;
+    }
 }
 
 .icon {
-  padding: 0 6px;
-  svg {
-    width: 26px;
-    height: 26px;
-    color: #1976d2;
-  }
+    padding: 0 6px;
+    svg {
+        width: 26px;
+        height: 26px;
+        color: #f69d4d;
+    }
+}
+
+.name {
+    width: 130px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 400;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }

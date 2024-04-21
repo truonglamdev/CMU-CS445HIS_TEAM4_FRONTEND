@@ -1,0 +1,24 @@
+.wrapper {
+    width: 270px;
+    height: 100vh;
+    background-color: #407087;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sidebar-item {
+    color: #fff;
+    font-weight: 500;
+    font-size: 1.8rem;
+    width: 100%;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    text-decoration: none;
+    text-align: center;
+    margin-left: 0;
+
+    &:hover {
+        background-color: #f5b175e3;
+    }
+}
