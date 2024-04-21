@@ -2,8 +2,9 @@ import Login from '~/pages/Auth/Login';
 import Home from '~/pages/Home';
 import NotFound from '~/pages/NotFound';
 import Register from '~/pages/Auth/Register';
-import EmailVerifier from '~/pages/EmailVerifier';
 import Dashboard from '~/pages/Dashboard';
+import EmailVerifier from '~/pages/EmailVerifier';
+
 const routes = [
     {
         path: '/login',
@@ -16,6 +17,7 @@ const routes = [
         isShowHeader: true,
         roles: ['admin'],
     },
+
     {
         path: '/register',
         page: Register,
