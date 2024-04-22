@@ -1,0 +1,32 @@
+.wrapper {
+    text-align: center;
+    margin-top: 20vh;
+    color: #727071;
+    font-family: 'Raleway55' serif;
+    h1 {
+        font-style: italic;
+        font-size: 10em;
+    }
+    div {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+    p {
+        display: inline-block;
+        padding: 4px;
+        border: medium solid #727071;
+        box-shadow: -5px 5px;
+        cursor: pointer;
+        a {
+            font-family: 'Raleway55' serif;
+            font-weight: bold;
+            text-decoration: none;
+            margin: 30px 30px;
+            color: #727071;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
