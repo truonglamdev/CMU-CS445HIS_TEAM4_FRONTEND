@@ -4,7 +4,7 @@ import NotFound from '~/pages/NotFound';
 import Register from '~/pages/Auth/Register';
 import Dashboard from '~/pages/Dashboard';
 import EmailVerifier from '~/pages/EmailVerifier';
-
+import NotAccess from '~/pages/NotAccess';
 const routes = [
     {
         path: '/login',
@@ -16,6 +16,10 @@ const routes = [
         page: Dashboard,
         isShowHeader: true,
         roles: ['admin'],
+    },
+    {
+        path: '/not-access',
+        page: NotAccess,
     },
 
     {
