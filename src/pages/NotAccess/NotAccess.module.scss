@@ -14,7 +14,8 @@
         margin-bottom: 20px;
     }
     p {
-        opacity: 0.7;
+
+        opacity: .7;
         font-size: 18px;
         margin-bottom: 20px;
     }
@@ -22,8 +23,9 @@
         color: #269394;
         font-size: 20px;
         text-decoration: none;
-        &:hover {
+        &:hover{
             text-decoration: underline;
         }
     }
 }
+

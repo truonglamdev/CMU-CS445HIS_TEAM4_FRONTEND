@@ -20,8 +20,12 @@ export default function Header() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('logo')}>
-                <img src={logo} />
+                <img src={logo}/>
+                <img src="src/assets/images/ZoomCode.png"/>
             </div>
+            
+           
+
             <div className={cx('menu')}>
                 <IconButton color="primary" aria-label="add to shopping cart">
                     <div className={cx('icon')}>

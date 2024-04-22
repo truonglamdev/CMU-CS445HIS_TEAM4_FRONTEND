@@ -1,1 +1,1 @@
-export { default } from './NotAccess';
+export {default} from './NotAccess';

@@ -19,9 +19,8 @@ const routes = [
     },
     {
         path: '/not-access',
-        page: NotAccess,
+        page:NotAccess,
     },
-
     {
         path: '/register',
         page: Register,
