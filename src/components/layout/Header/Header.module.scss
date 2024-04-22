@@ -10,11 +10,16 @@
 .logo {
     width: 90px;
     height: 90px;
-
+    display: flex;
+    justify-content: space-between;
     img {
         width: 100%;
         background-color: transparent;
     }
+}
+
+.brand-logo{
+    font-size: 200px;
 }
 
 .menu {
@@ -57,4 +62,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+}
+.myMenu{
+    
 }
