@@ -13,35 +13,35 @@ export default function Sidebar(data = []) {
                     return {
                         fontWeight: isActive ? '500' : '',
                         viewTransitionName: isTransitioning ? 'slide' : '',
-                        backgroundColor: isActive ? '#f69d4d' : '',
+                        backgroundColor: isActive ? '#3e99ea' : '',
                     };
                 }}
             >
                 Dashboard
             </NavLink>
             <NavLink
-                to={'/about'}
+                to={'/human'}
                 className={cx('sidebar-item')}
                 style={({ isActive, isPending, isTransitioning }) => {
                     return {
                         viewTransitionName: isTransitioning ? 'slide' : '',
-                        backgroundColor: isActive ? '#f69d4d' : '',
+                        backgroundColor: isActive ? '#3e99ea' : '',
                     };
                 }}
             >
-                Dashboard
+                Human
             </NavLink>
             <NavLink
-                to={'/home'}
+                to={'/payroll'}
                 className={cx('sidebar-item')}
                 style={({ isActive, isPending, isTransitioning }) => {
                     return {
                         viewTransitionName: isTransitioning ? 'slide' : '',
-                        backgroundColor: isActive ? '#f69d4d' : '',
+                        backgroundColor: isActive ? '#3e99ea' : '',
                     };
                 }}
             >
-                Dashboard
+                Payroll
             </NavLink>
         </div>
     );

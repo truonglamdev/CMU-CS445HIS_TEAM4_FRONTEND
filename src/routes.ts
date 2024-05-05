@@ -15,11 +15,11 @@ const routes = [
         path: '/dashboard',
         page: Dashboard,
         isShowHeader: true,
-        roles: ['admin'],
+        roles: ['admin', 'user'],
     },
     {
         path: '/not-access',
-        page:NotAccess,
+        page: NotAccess,
     },
     {
         path: '/register',

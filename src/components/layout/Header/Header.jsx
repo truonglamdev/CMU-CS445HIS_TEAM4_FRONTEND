@@ -20,11 +20,9 @@ export default function Header() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('logo')}>
-                <img src={logo}/>
-                <img src="src/assets/images/ZoomCode.png"/>
+                <img src={logo} />
+                <img src="src/assets/images/ZoomCode.png" />
             </div>
-            
-           
 
             <div className={cx('menu')}>
                 <IconButton color="primary" aria-label="add to shopping cart">
@@ -39,7 +37,7 @@ export default function Header() {
                             size="large"
                             className={cx('btn-register')}
                             onClick={handleLogout}
-                            sx={{ backgroundColor: '#f69d4d', ':hover': 'opacity : 0.8' }}
+                            sx={{ backgroundColor: '#3e99ea', ':hover': 'opacity : 0.8' }}
                         >
                             Log out
                         </Button>
@@ -52,7 +50,7 @@ export default function Header() {
                             size="large"
                             className={cx('btn-register')}
                             onClick={() => navigate('/register')}
-                            sx={{ backgroundColor: '#f69d4d', ':hover': 'opacity : 0.8' }}
+                            sx={{ backgroundColor: '#3e99ea', ':hover': 'opacity : 0.8' }}
                         >
                             Register
                         </Button>
@@ -61,7 +59,7 @@ export default function Header() {
                             variant="contained"
                             size="large"
                             onClick={() => navigate('/login')}
-                            sx={{ backgroundColor: '#f69d4d' }}
+                            sx={{ backgroundColor: '#3e99ea' }}
                         >
                             Login
                         </Button>

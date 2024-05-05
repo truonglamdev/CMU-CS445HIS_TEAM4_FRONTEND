@@ -1,7 +1,7 @@
 .wrapper {
     display: flex;
     height: 100px;
-    background-color: #407087;
+    background-color: #242b3b;
     align-items: center;
     padding: 0 90px;
     justify-content: space-between;
@@ -24,7 +24,7 @@
 
 .btn-register,
 .btn-login {
-    background-color: #f69d4d;
+    background-color: #3e99ea;
     margin-right: 20px !important;
     padding: 10px !important;
     min-width: 140px !important;
@@ -33,7 +33,7 @@
     border-radius: 50px !important;
 
     &:hover {
-        background-color: #f69d4d !important;
+        background-color: #3e99ea !important;
         opacity: 0.8 !important;
     }
 }
@@ -43,12 +43,13 @@
     svg {
         width: 26px;
         height: 26px;
-        color: #f69d4d;
+        color: #3e99ea;
     }
 }
 
 .name {
-    width: 130px;
+    // width: 130px;
+    padding: 0 12px;
     display: flex;
     align-items: center;
     color: #fff;
@@ -57,4 +58,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+
+    border-radius: 900px;
+    border: 2px solid #fff;
 }
