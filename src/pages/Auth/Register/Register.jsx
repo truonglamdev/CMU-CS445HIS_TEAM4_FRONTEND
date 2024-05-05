@@ -161,7 +161,7 @@ function Register() {
                             </Button>
                             <Grid container>
                                 <Grid item xs>
-                                    <Link to="/login" variant="body2" sx={{ fontSize: '12px', color: '#407087' }}>
+                                    <Link to="/login" variant="body2" sx={{ fontSize: '11px', color: '#407087' }}>
                                         {"Don't have an account? Login"}
                                     </Link>
                                 </Grid>

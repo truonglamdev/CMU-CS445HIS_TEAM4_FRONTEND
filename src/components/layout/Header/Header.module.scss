@@ -10,11 +10,16 @@
 .logo {
     width: 90px;
     height: 90px;
-
+    display: flex;
+    justify-content: space-between;
     img {
         width: 100%;
         background-color: transparent;
     }
+}
+
+.brand-logo{
+    font-size: 200px;
 }
 
 .menu {
@@ -61,4 +66,7 @@
 
     border-radius: 900px;
     border: 2px solid #fff;
+}
+.myMenu{
+    
 }

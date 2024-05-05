@@ -319,7 +319,6 @@ export default function Dashboard() {
                                     endAngle: 180,
                                     cx: 140,
                                     cy: 190,
-                                    label: 'Department',
                                 },
                             ]}
                             width={600}

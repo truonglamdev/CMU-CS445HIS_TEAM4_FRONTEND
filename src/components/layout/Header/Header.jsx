@@ -2,7 +2,7 @@ import { IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
 import classNames from 'classnames/bind';
 import { IoNotifications } from 'react-icons/io5';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '~/assets/images/logo.png';
 import styles from './Header.module.scss';
 import Cookies from 'universal-cookie';
@@ -11,12 +11,14 @@ const cookies = new Cookies();
 export default function Header() {
     const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {};
     const navigate = useNavigate();
+
     const handleLogout = () => {
         localStorage.removeItem('user');
         cookies.remove('accessToken');
         cookies.remove('refreshToken');
         navigate('/login');
     };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('logo')}>
@@ -24,13 +26,18 @@ export default function Header() {
                 <img src="src/assets/images/ZoomCode.png" />
             </div>
 
+            <Link to="/" className={cx('logo')}>
+                <img src={logo} alt="Home" />
+                <img src="/src/assets/images/Logo1.png" alt="Home"></img>
+            </Link>
+
             <div className={cx('menu')}>
                 <IconButton color="primary" aria-label="add to shopping cart">
                     <div className={cx('icon')}>
                         <IoNotifications />
                     </div>
                 </IconButton>
-                {user && user?.isVerified ? (
+                {user && user.isVerified ? (
                     <>
                         <Button
                             variant="contained"
