@@ -27,7 +27,6 @@ instance.interceptors.response.use(
     },
     async (error) => {
         const originalConfig = error.config;
-        console.log(originalConfig);
         console.log('Access Token expired');
         if (error.response && error.response.status === 419) {
             try {

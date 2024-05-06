@@ -168,9 +168,61 @@ export default function Dashboard() {
     }, []);
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box className={cx('wrapper')} sx={{ display: 'flex', backgroundColor: '#eaeceb' }}>
             <Sidebar />
             <div className={cx('content')}>
+                <div className={cx('item-btn')}>
+                    <Button
+                        onClick={handleResetData}
+                        variant="contained"
+                        size="large"
+                        sx={{
+                            width: '140px',
+                            height: '40px',
+                            fontSize: '1.2rem',
+                            backgroundColor: '#f69d4d',
+                            borderRadius: '1000px',
+                        }}
+                    >
+                        Reset
+                    </Button>
+                    <Button
+                        onClick={() => handleExportToExcel(viewData)}
+                        variant="contained"
+                        size="large"
+                        sx={{
+                            width: '180px',
+                            height: '40px',
+                            fontSize: '1.2rem',
+                            backgroundColor: '#f69d4d',
+                            borderRadius: '1000px',
+                        }}
+                    >
+                        Export to Excel
+                    </Button>
+                </div>
+                <div className={cx('view-card')}>
+                    <div className={cx('card-wrapper')}>
+                        <div className={cx('card-title')}>Total Earning</div>
+                        <div className={cx('card-vale')}>
+                            {allData?.totalEarningLastYear + allData?.totalEarningCurrentYear}
+                        </div>
+                    </div>
+
+                    <div className={cx('card-wrapper')}>
+                        <div className={cx('card-title')}>Total Vacation Day</div>
+                        <div className={cx('card-vale')}>{allData.totalVacationDay}</div>
+                    </div>
+                    <div className={cx('card-wrapper')}>
+                        <div className={cx('card-title')}>Total Employees</div>
+                        <div className={cx('card-vale')}>{personalData?.length}</div>
+                    </div>
+                    <div className={cx('card-wrapper')}>
+                        <div className={cx('card-title')}>Total Earning</div>
+                        <div className={cx('card-vale')}>300300</div>
+                    </div>
+                </div>
+
                 <div className={cx('menu-action')}>
                     <div className={cx('item')}>
                         <FormControl fullWidth>
@@ -263,36 +315,7 @@ export default function Dashboard() {
                         </FormControl>
                     </div>
                 </div>
-                <div className={cx('item-btn')}>
-                    <Button
-                        onClick={handleResetData}
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            width: '140px',
-                            height: '40px',
-                            fontSize: '1.2rem',
-                            backgroundColor: '#f69d4d',
-                            borderRadius: '1000px',
-                        }}
-                    >
-                        Reset
-                    </Button>
-                    <Button
-                        onClick={() => handleExportToExcel(viewData)}
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            width: '180px',
-                            height: '40px',
-                            fontSize: '1.2rem',
-                            backgroundColor: '#f69d4d',
-                            borderRadius: '1000px',
-                        }}
-                    >
-                        Export to Excel
-                    </Button>
-                </div>
+
                 <div className={cx('chart')}>
                     <BarChart
                         xAxis={[{ scaleType: 'band', data: ['Current Year', 'Last Year'] }]}

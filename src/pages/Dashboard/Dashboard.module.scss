@@ -1,8 +1,12 @@
-.content {
+.wrapper {
     width: 100%;
+}
+.content {
+    width: 80%;
     height: 100%;
-    padding: 40px;
     background-color: #eaeceb;
+    flex: 1;
+    padding: 10px 18px;
 }
 .menu-action {
     width: 100%;
@@ -43,4 +47,28 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     border-radius: 8px;
     padding: 10px 20px;
+}
+
+.view-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 20px;
+    margin: 20px 0;
+
+    .card-wrapper {
+        min-width: 220px;
+        height: 100px;
+        padding: 16px 20px;
+        display: flex;
+        flex-direction: column;
+        border-radius: 8px;
+        background-color: #dcf4f8;
+        font-size: 1.8rem;
+        color: #333;
+        font-weight: bold;
+    }
 }

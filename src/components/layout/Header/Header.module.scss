@@ -1,14 +1,14 @@
 .wrapper {
     display: flex;
     height: 100px;
-    background-color: #242b3b;
+    background-color: #fff;
     align-items: center;
     padding: 0 90px;
     justify-content: space-between;
 }
 
 .logo {
-    width: 90px;
+    width: 200px;
     height: 90px;
     display: flex;
     justify-content: space-between;
@@ -18,7 +18,7 @@
     }
 }
 
-.brand-logo{
+.brand-logo {
     font-size: 200px;
 }
 
@@ -57,7 +57,7 @@
     padding: 0 12px;
     display: flex;
     align-items: center;
-    color: #fff;
+    color: #3e99ea;
     font-size: 1.4rem;
     font-weight: 400;
     overflow: hidden;
@@ -65,8 +65,7 @@
     text-overflow: ellipsis;
 
     border-radius: 900px;
-    border: 2px solid #fff;
+    border: 2px solid #3e99ea;
 }
-.myMenu{
-    
+.myMenu {
 }

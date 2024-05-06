@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import classNames from 'classnames/bind';
 import { IoNotifications } from 'react-icons/io5';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '~/assets/images/logo.png';
+import logo from '~/assets/images/logo.jpg';
 import styles from './Header.module.scss';
 import Cookies from 'universal-cookie';
 const cx = classNames.bind(styles);
@@ -23,13 +23,7 @@ export default function Header() {
         <div className={cx('wrapper')}>
             <div className={cx('logo')}>
                 <img src={logo} />
-                <img src="src/assets/images/ZoomCode.png" />
             </div>
-
-            <Link to="/" className={cx('logo')}>
-                <img src={logo} alt="Home" />
-                <img src="/src/assets/images/Logo1.png" alt="Home"></img>
-            </Link>
 
             <div className={cx('menu')}>
                 <IconButton color="primary" aria-label="add to shopping cart">
