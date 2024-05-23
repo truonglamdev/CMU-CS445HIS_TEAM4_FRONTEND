@@ -6,7 +6,7 @@ import ProtectedRoute from '~/components/ProtectedRoute';
 import { AuthContext } from '~/components/AuthContext/AuthContext';
 
 function App() {
-    const [currentUser, setCurrentUser] = useState({ name: 'Taylor' });
+    const [currentUser, setCurrentUser] = useState(null);
     useEffect(() => {
         const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : null;
         if (user) {

@@ -12,3 +12,23 @@ export function uniqueValuesByKey(array, key) {
 
     return uniqueValues;
 }
+
+export function  countFields (arr , field) {
+    const departmentCounts = {};
+
+    arr.forEach((employee) => {
+        const department = employee[field];
+        if (departmentCounts.hasOwnProperty(department)) {
+            departmentCounts[department]++;
+        } else {
+            departmentCounts[department] = 1;
+        }
+    });
+
+    const result = [];
+    for (const department in departmentCounts) {
+        result.push({ value: departmentCounts[department], label: department });
+    }
+    return result
+}
+

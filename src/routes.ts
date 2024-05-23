@@ -5,6 +5,10 @@ import Register from '~/pages/Auth/Register';
 import Dashboard from '~/pages/Dashboard';
 import EmailVerifier from '~/pages/EmailVerifier';
 import NotAccess from '~/pages/NotAccess';
+import Human from '~/pages/Human';
+import Management from '~/pages/Management';
+import Notifications from '~/pages/Notifications';
+import AddNewEmployee from './pages/AddNewEmployee';
 const routes = [
     {
         path: '/login',
@@ -16,6 +20,30 @@ const routes = [
         page: Dashboard,
         isShowHeader: true,
         roles: ['admin', 'user'],
+    },
+    {
+        path: '/human',
+        page: Human,
+        isShowHeader: true,
+        roles: ['admin'],
+    },
+    {
+        path: '/management',
+        page: Management,
+        isShowHeader: true,
+        roles: ['admin'],
+    },
+    {
+        path: '/notification',
+        page: Notifications,
+        isShowHeader: true,
+        roles: ['admin', 'user'],
+    },
+    {
+        path: '/create-employee',
+        page: AddNewEmployee,
+        isShowHeader: true,
+        roles: ['admin'],
     },
     {
         path: '/not-access',
@@ -38,6 +66,7 @@ const routes = [
     {
         path: '*',
         page: NotFound,
+
         isShowHeader: true,
     },
 ];

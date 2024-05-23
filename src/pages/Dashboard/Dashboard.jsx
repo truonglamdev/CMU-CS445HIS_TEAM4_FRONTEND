@@ -13,6 +13,7 @@ import { AuthContext } from '~/components/AuthContext/AuthContext';
 import { uniqueValuesByKey } from '~/utils/algorithms';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { PieChart } from '@mui/x-charts';
+
 const columns = [
     { field: 'id', headerName: 'ID', width: 70 },
     { field: 'fullName', headerName: 'FULL NAME', width: 160 },
@@ -40,14 +41,6 @@ const columns = [
         type: 'number',
         width: 170,
     },
-    // {
-    //     field: 'fullName',
-    //     headerName: 'Full name',
-    //     description: 'This column has a value getter and is not sortable.',
-    //     sortable: false,
-    //     width: 160,
-    //     valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-    // },
 ];
 
 const cx = classNames.bind(styles);
@@ -62,6 +55,7 @@ export default function Dashboard() {
     const [typeJob, setTypeJob] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [year, setYear] = useState('');
+    const [birthdayEmployeeList, setBirthdayEmployeeList] = useState([]);
 
     const currentUser = useContext(AuthContext);
 
@@ -112,7 +106,6 @@ export default function Dashboard() {
                 setIsLoading(true);
                 const res = await request.get(`/view/human/employees?${paramsString}`);
                 if (res && res.data) {
-                    console.log(res?.data);
                     setAllData(res?.data);
                     setViewData(rowsData(res?.data?.viewData));
                     setIsLoading(false);
@@ -167,6 +160,25 @@ export default function Dashboard() {
         fetchDepartment();
     }, []);
 
+    useEffect(() => {
+        const fetchBirthday = async () => {
+            try {
+                setIsLoading(true);
+                const res = await request.get('/view/employee/birthday');
+                if (res && res?.data) {
+                    setIsLoading(false);
+                    setBirthdayEmployeeList(res.data);
+                }
+            } catch (error) {
+                setIsLoading(false);
+                toast.error(error?.response?.data?.message, {
+                    position: 'top-center',
+                });
+            }
+        };
+        fetchBirthday();
+    }, []);
+
     return (
         <Box className={cx('wrapper')} sx={{ display: 'flex', backgroundColor: '#eaeceb' }}>
             <Sidebar />
@@ -208,7 +220,6 @@ export default function Dashboard() {
                             {allData?.totalEarningLastYear + allData?.totalEarningCurrentYear}
                         </div>
                     </div>
-
                     <div className={cx('card-wrapper')}>
                         <div className={cx('card-title')}>Total Vacation Day</div>
                         <div className={cx('card-vale')}>{allData.totalVacationDay}</div>
@@ -218,8 +229,8 @@ export default function Dashboard() {
                         <div className={cx('card-vale')}>{personalData?.length}</div>
                     </div>
                     <div className={cx('card-wrapper')}>
-                        <div className={cx('card-title')}>Total Earning</div>
-                        <div className={cx('card-vale')}>300300</div>
+                        <div className={cx('card-title')}>Total birthday in current month</div>
+                        <div className={cx('card-vale')}>{birthdayEmployeeList.length}</div>
                     </div>
                 </div>
 
@@ -234,7 +245,9 @@ export default function Dashboard() {
                                 label="Gender"
                                 onChange={(e) => setGender(e.target.value)}
                             >
-                                <MenuItem value={''}>All</MenuItem>
+                                <MenuItem sx={{ fontSize: '1.2rem' }} value={''}>
+                                    All
+                                </MenuItem>
                                 <MenuItem value={'Nam'}>Male</MenuItem>
                                 <MenuItem value={'Nữ'}>Female</MenuItem>
                                 <MenuItem value={'Khác'}>Other</MenuItem>
@@ -257,7 +270,7 @@ export default function Dashboard() {
                             </Select>
                         </FormControl>
                     </div>
-                    <div className={cx('item')}>
+                    {/* <div className={cx('item')}>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Year</InputLabel>
                             <Select
@@ -272,7 +285,7 @@ export default function Dashboard() {
                                 <MenuItem value={0}>Last Year</MenuItem>
                             </Select>
                         </FormControl>
-                    </div>
+                    </div> */}
                     <div className={cx('item')}>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Type Job</InputLabel>
@@ -327,6 +340,7 @@ export default function Dashboard() {
                         ]}
                         width={500}
                         height={400}
+                        fontSize={20}
                     />
 
                     {departments.length > 0 && (
@@ -364,7 +378,7 @@ export default function Dashboard() {
                             }}
                             pageSizeOptions={[5, 10]}
                             checkboxSelection
-                            sx={{ fontSize: '1.2rem' }}
+                            sx={{ fontSize: '1.3rem' }}
                         />
                     )}
                 </div>

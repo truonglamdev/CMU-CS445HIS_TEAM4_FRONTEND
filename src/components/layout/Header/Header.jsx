@@ -2,13 +2,19 @@ import { IconButton } from '@mui/material';
 import Button from '@mui/material/Button';
 import classNames from 'classnames/bind';
 import { IoNotifications } from 'react-icons/io5';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import logo from '~/assets/images/logo.jpg';
 import styles from './Header.module.scss';
 import Cookies from 'universal-cookie';
+import { useEffect } from 'react';
+import Badge from '@mui/material/Badge';
+import socket from '~/utils/socketConfig.js';
+import { useNotifications } from '~/providers/NotificationContext';
+
 const cx = classNames.bind(styles);
 const cookies = new Cookies();
 export default function Header() {
+    const { addNotification, newNotification, readNotification } = useNotifications();
     const user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {};
     const navigate = useNavigate();
 
@@ -19,6 +25,22 @@ export default function Header() {
         navigate('/login');
     };
 
+    const handleReadNotification = () => {
+        readNotification();
+        navigate('/notification');
+    };
+
+    useEffect(() => {
+        socket.on('adminNotification', (newMessage) => {
+            console.log('check message', newMessage);
+            addNotification(newMessage);
+        });
+
+        return () => {
+            socket.off('adminNotification'); // Cleanup listener on component unmount
+        };
+    }, [addNotification]);
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('logo')}>
@@ -27,8 +49,10 @@ export default function Header() {
 
             <div className={cx('menu')}>
                 <IconButton color="primary" aria-label="add to shopping cart">
-                    <div className={cx('icon')}>
-                        <IoNotifications />
+                    <div className={cx('icon')} onClick={() => handleReadNotification()}>
+                        <Badge color="secondary" overlap="circular" badgeContent={newNotification.length}>
+                            <IoNotifications />
+                        </Badge>
                     </div>
                 </IconButton>
                 {user && user.isVerified ? (
