@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import * as request from '~/utils/axiosConfig';
 import { toast } from 'react-toastify';
+
 const validationSchema = yup.object({
     planName: yup.string().max(10, 'Plan Name must be at most 10 characters').required('Plan Name is required'),
     deductable: yup.number().positive('Deductable must be a positive number').required('Deductable is required'),
@@ -44,6 +45,7 @@ function Human() {
             }
         },
     });
+    
     return (
         <Box className={cx('wrapper')} sx={{ display: 'flex', backgroundColor: '#eaeceb' }}>
             <Sidebar />

@@ -71,7 +71,7 @@ export default function Sidebar(data = []) {
                             <Groups2Icon sx={{ fontSize: '20px' }} /> <span>Management</span>
                         </NavLink>
                         <NavLink
-                            to={'/payroll'}
+                            to={'/customers'}
                             className={cx('sidebar-item')}
                             style={({ isActive, isPending, isTransitioning }) => {
                                 return {
@@ -81,7 +81,7 @@ export default function Sidebar(data = []) {
                             }}
                         >
                             <SupportAgentIcon sx={{ fontSize: '20px' }} />
-                            <span>Customer</span>
+                            <span>Customers</span>
                         </NavLink>{' '}
                     </>
                 ) : (

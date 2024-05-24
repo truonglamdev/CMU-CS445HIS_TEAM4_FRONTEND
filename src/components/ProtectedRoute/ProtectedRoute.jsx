@@ -12,7 +12,6 @@ export default function ProtectedRoute({ roles, redirect = '/login', children })
 
     const roleUser = user.isAdmin ? 'admin' : 'user';
     const userHasRequiredRole = roles.includes(roleUser);
-    console.log(roleUser);
     if (!userHasRequiredRole) {
         return <div>Role not access</div>;
     }

@@ -12,6 +12,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import CloseIcon from '@mui/icons-material/Close';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import Loading from '~/components/Loading';
 
 const cx = classNames.bind(styles);
 
@@ -31,11 +32,10 @@ const style = {
 function Management() {
     const navigate = useNavigate();
     const [openModalDelete, setOpenModalDelete] = useState(false);
-    const [openModalEdit, setOpenModalEdit] = useState(false);
     const [deleteChecked, setDeleteChecked] = useState(false);
     const [deleteId, setDeleteId] = useState(-1);
     const [isLoading, setLoading] = useState(false);
-    const [editId, setEditId] = useState(-1);
+    const [allCity, setAllCity] = useState([]);
     const columns = [
         { field: 'id', headerName: 'ID', width: 70 },
         { field: 'fullName', headerName: 'FULL NAME', width: 160 },
@@ -116,11 +116,8 @@ function Management() {
         }
     };
 
-    const handleEdit = () => {};
-
     const handleEditClick = (id) => {
-        setOpenModalEdit(true);
-        setEditId(id);
+        navigate(`/edit-employee/${id}`);
     };
     const rowsData = (data) => {
         const result = data.map((obj) => ({
@@ -141,6 +138,7 @@ function Management() {
             try {
                 const res = await request.get('/view/personal');
                 setAllGender(countFields(res?.data, 'CURRENT_GENDER'));
+                setAllCity(countFields(res?.data, 'CURRENT_CITY'));
                 setViewData(rowsData(res?.data));
             } catch (error) {
                 console.log(error);
@@ -151,142 +149,135 @@ function Management() {
     return (
         <Box className={cx('wrapper')} sx={{ display: 'flex', backgroundColor: '#eaeceb' }}>
             <Sidebar />
-            <div className={cx('content')}>
-                <div className={cx('action')}>
-                    <Button
-                        onClick={() => navigate('/create-employee')}
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            minWidth: '140px',
-                            height: '40px',
-                            fontSize: '1.2rem',
-                            backgroundColor: '#f69d4d',
-                            borderRadius: '1000px',
-                        }}
-                    >
-                        Add New Employee
-                    </Button>
-                    {/* <Button
-                        // onClick={handleResetData}
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            minWidth: '140px',
-                            height: '40px',
-                            fontSize: '1.2rem',
-                            backgroundColor: '#f69d4d',
-                            borderRadius: '1000px',
-                        }}
-                    >
-                        Import From Excel
-                    </Button> */}
-                    <Button
-                        onClick={() => toast.warning('This feature is under development, please try again later')}
-                        variant="contained"
-                        size="large"
-                        sx={{
-                            minWidth: '140px',
-                            height: '40px',
-                            fontSize: '1.2rem',
-                            backgroundColor: '#f69d4d',
-                            borderRadius: '1000px',
-                        }}
-                    >
-                        Export To Excel
-                    </Button>
-                </div>
-                <div className={cx('content')}>
-                    <div className={cx('chart')}>
-                        <PieChart
-                            series={[
-                                {
-                                    data: allGender.length > 0 ? allGender : [],
-                                    highlightScope: { faded: 'global', highlighted: 'item' },
-                                    faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
-                                },
-                            ]}
-                            height={300}
-                            width={300}
-                        />
-                    </div>
-                    <div className={cx('table')}>
-                        <DataGrid
-                            rows={viewData}
-                            columns={columns}
-                            initialState={{
-                                pagination: {
-                                    paginationModel: { page: 0, pageSize: 10 },
-                                },
+            {isLoading ? (
+                <Loading />
+            ) : (
+                <div>
+                    <div className={cx('content')}>
+                        <div className={cx('action')}>
+                            <Button
+                                onClick={() => navigate('/create-employee')}
+                                variant="contained"
+                                size="large"
+                                sx={{
+                                    minWidth: '140px',
+                                    height: '40px',
+                                    fontSize: '1.2rem',
+                                    backgroundColor: '#f69d4d',
+                                    borderRadius: '1000px',
+                                }}
+                            >
+                                Add New Employee
+                            </Button>
+                            {/* <Button
+                            // onClick={handleResetData}
+                            variant="contained"
+                            size="large"
+                            sx={{
+                                minWidth: '140px',
+                                height: '40px',
+                                fontSize: '1.2rem',
+                                backgroundColor: '#f69d4d',
+                                borderRadius: '1000px',
                             }}
-                            pageSizeOptions={[5, 10]}
-                            checkboxSelection
-                            sx={{ fontSize: '1.3rem' }}
-                        />
+                        >
+                            Import From Excel
+                        </Button> */}
+                            <Button
+                                onClick={() =>
+                                    toast.warning('This feature is under development, please try again later')
+                                }
+                                variant="contained"
+                                size="large"
+                                sx={{
+                                    minWidth: '140px',
+                                    height: '40px',
+                                    fontSize: '1.2rem',
+                                    backgroundColor: '#f69d4d',
+                                    borderRadius: '1000px',
+                                }}
+                            >
+                                Export To Excel
+                            </Button>
+                        </div>
+                        <div className={cx('content')}>
+                            <div className={cx('chart-content')}>
+                                <h2>Overview</h2>
+                                <div className={cx('chart')}>
+                                    <PieChart
+                                        series={[
+                                            {
+                                                data: allGender.length > 0 ? allGender : [],
+                                                highlightScope: { faded: 'global', highlighted: 'item' },
+                                                faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+                                            },
+                                        ]}
+                                        height={300}
+                                        width={400}
+                                    />
+                                    <PieChart
+                                        series={[
+                                            {
+                                                data: allCity.length > 0 ? allCity : [],
+                                                highlightScope: { faded: 'global', highlighted: 'item' },
+                                                faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+                                            },
+                                        ]}
+                                        height={300}
+                                        width={400}
+                                    />
+                                </div>
+                            </div>
+                            <div className={cx('table')}>
+                                <DataGrid
+                                    rows={viewData}
+                                    columns={columns}
+                                    initialState={{
+                                        pagination: {
+                                            paginationModel: { page: 0, pageSize: 10 },
+                                        },
+                                    }}
+                                    pageSizeOptions={[5, 10]}
+                                    checkboxSelection
+                                    sx={{ fontSize: '1.3rem' }}
+                                />
+                            </div>
+                        </div>
                     </div>
+                    <Modal open={openModalDelete}>
+                        <Box sx={style} className={cx('modal')}>
+                            <div className={cx('header-modal')}>
+                                <span>Delete Employee</span>
+                                <CloseIcon onClick={() => setOpenModalDelete(false)} />
+                            </div>
+                            <div className={cx('header-des')}>
+                                Are you sure you want to delete this Employee?
+                                <div>
+                                    <input type="checkbox" onChange={(e) => setDeleteChecked(e.target.checked)} />
+                                    <span>
+                                        When you delete yourself here, the deleted data will be synchronized to both
+                                        human and payroll
+                                    </span>
+                                </div>
+                            </div>
+                            <div className={cx('header-footer')}>
+                                <Button variant="outlined" onClick={() => setOpenModalDelete(false)}>
+                                    Cancel
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    disabled={deleteChecked ? false : true}
+                                    style={{ backgroundColor: '#d9534f' }}
+                                    onClick={handleDelete}
+                                >
+                                    Delete
+                                </Button>
+                            </div>
+                        </Box>
+                    </Modal>
+
                 </div>
-            </div>
-            <Modal open={openModalDelete}>
-                <Box sx={style} className={cx('modal')}>
-                    <div className={cx('header-modal')}>
-                        <span>Delete Employee</span>
-                        <CloseIcon onClick={() => setOpenModalDelete(false)} />
-                    </div>
-                    <div className={cx('header-des')}>
-                        Are you sure you want to delete this Employee?
-                        <div>
-                            <input type="checkbox" onChange={(e) => setDeleteChecked(e.target.checked)} />
-                            <span>
-                                When you delete yourself here, the deleted data will be synchronized to both human and
-                                payroll
-                            </span>
-                        </div>
-                    </div>
-                    <div className={cx('header-footer')}>
-                        <Button variant="outlined" onClick={() => setOpenModalDelete(false)}>
-                            Cancel
-                        </Button>
-                        <Button
-                            variant="contained"
-                            disabled={deleteChecked ? false : true}
-                            style={{ backgroundColor: '#d9534f' }}
-                            onClick={handleDelete}
-                        >
-                            Delete
-                        </Button>
-                    </div>
-                </Box>
-            </Modal>
-            <Modal open={openModalEdit}>
-                <Box sx={style} className={cx('modal')}>
-                    <div className={cx('header-modal')}>
-                        <span>Edit Employee</span>
-                        <CloseIcon onClick={() => setOpenModalEdit(false)} />
-                    </div>
-                    <div className={cx('header-des')}>
-                        Are you sure you want to delete this Employee?
-                        <div>
-                            <span>
-                                When you delete yourself here, the deleted data will be synchronized to both human and
-                                payroll
-                            </span>
-                        </div>
-                    </div>
-                    <div className={cx('header-footer')}>
-                        <Button variant="outlined" onClick={() => setOpenModalEdit(false)}>
-                            Cancel
-                        </Button>
-                        <Button
-                            variant="contained"
-                            disabled={deleteChecked ? false : true}
-                            style={{ backgroundColor: '#d9534f' }}
-                            onClick={handleEdit}
-                        >
-                            Delete
-                        </Button>
-                    </div>
-                </Box>
-            </Modal>
+            )}
         </Box>
     );
 }

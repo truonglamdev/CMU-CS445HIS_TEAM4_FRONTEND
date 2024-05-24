@@ -1,6 +1,6 @@
 import Sidebar from '~/components/layout/Sidebar';
 import classNames from 'classnames/bind';
-import styles from './AddNewEmployee.module.scss';
+import styles from '../AddNewEmployee/AddNewEmployee.module.scss';
 import { Button, Container, Grid, InputLabel, Select, TextField, Typography } from '@material-ui/core';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
@@ -11,7 +11,7 @@ import { toast } from 'react-toastify';
 
 const cx = classNames.bind(styles);
 const generateRandomId = () => Math.floor(Math.random() * 2147483647);
-export default function AddNewEmployee() {
+export default function EditEmployee() {
     const [allBenefitPlan, setAllBenefitPlan] = useState([]);
     const [allPayRate, setAllPayRate] = useState([]);
     const validationSchema = Yup.object({
@@ -70,7 +70,7 @@ export default function AddNewEmployee() {
             <div className={cx('content')}>
                 <Container className={cx('container')}>
                     <Typography variant="h4" gutterBottom>
-                        Add New Employee
+                        Edit Employee
                     </Typography>
                     <Formik
                         initialValues={{
@@ -125,6 +125,7 @@ export default function AddNewEmployee() {
                                         <Field
                                             name="PERSONAL_ID"
                                             as={TextField}
+                                            disabled
                                             label="Personal ID"
                                             fullWidth
                                             error={touched.PERSONAL_ID && !!errors.PERSONAL_ID}
@@ -435,9 +436,9 @@ export default function AddNewEmployee() {
                                             type="submit"
                                             variant="contained"
                                             color="primary"
-                                            sx={{ padding: '6px 14px' }}
+                                            sx={{ padding: '10px 14px', width: '120px' }}
                                         >
-                                            Submit
+                                            Save Change
                                         </Button>
                                     </Grid>
                                 </Grid>

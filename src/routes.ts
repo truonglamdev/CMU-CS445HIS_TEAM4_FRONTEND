@@ -9,6 +9,9 @@ import Human from '~/pages/Human';
 import Management from '~/pages/Management';
 import Notifications from '~/pages/Notifications';
 import AddNewEmployee from './pages/AddNewEmployee';
+import Customers from './pages/Customers';
+import EditEmployee from '~/pages/EditEmployee';
+
 const routes = [
     {
         path: '/login',
@@ -28,6 +31,12 @@ const routes = [
         roles: ['admin'],
     },
     {
+        path: '/customers',
+        page: Customers,
+        isShowHeader: true,
+        roles: ['admin'],
+    },
+    {
         path: '/management',
         page: Management,
         isShowHeader: true,
@@ -42,6 +51,12 @@ const routes = [
     {
         path: '/create-employee',
         page: AddNewEmployee,
+        isShowHeader: true,
+        roles: ['admin'],
+    },
+    {
+        path: '/edit-employee/:id',
+        page: EditEmployee,
         isShowHeader: true,
         roles: ['admin'],
     },
